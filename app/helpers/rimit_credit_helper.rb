@@ -1,0 +1,2 @@
+module RimitCreditHelper
+end

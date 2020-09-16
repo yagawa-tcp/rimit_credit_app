@@ -1,0 +1,2 @@
+class RimitCreditController < ApplicationController
+end

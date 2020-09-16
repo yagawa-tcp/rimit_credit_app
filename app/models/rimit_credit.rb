@@ -1,0 +1,2 @@
+class RimitCredit < ApplicationRecord
+end
