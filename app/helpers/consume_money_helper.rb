@@ -1,0 +1,2 @@
+module ConsumeMoneyHelper
+end

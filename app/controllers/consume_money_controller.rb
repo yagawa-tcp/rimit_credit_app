@@ -1,0 +1,2 @@
+class ConsumeMoneyController < ApplicationController
+end
