@@ -1,9 +1,0 @@
-<%= form_with(url: credit_rimit_index_path, local: true, method: :post, class: "search-form") do |form| %>
-  <%= form.text_field :keyword, placeholder: "商品名を記入", class: "product-name" %>
-  <%= form.text_field :keyword, placeholder: "金額を記入（半角数字）", class: "product-money" %>
-  <%= form.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"product-category"}) %>
-  <%= form.submit "追加", class: "plus-consume-btn" %>
-<% end %>
-<div class="contents row">
-  <%# <%= tweet_lists(@tweets) %> %>
-</div>

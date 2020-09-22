@@ -1,0 +1,22 @@
+
+<%= form_with url: cunsume_moneys_path, model: @consume,  local: true, method: :post, class: "consumption-form" do |form| %>
+ <% if user_signed_in? %> 
+   <h1> 家計簿入力欄 </h1>
+  <%= form.text_field :keyword, placeholder: "商品名を記入", class: "product-name" %><br>
+  <%= form.text_field :keyword, placeholder: "金額を記入（半角数字）", class: "product-money" %><br>
+  <%= form.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"product-category"}) %><br>
+  <%= form.submit "追加", class: "plus-consume-btn" %>
+  <% else %>
+  <h1> ログインをすることで、家計簿アプリが使えるようになります </h1>
+<% end %>  
+<% end %>
+<div class="contents row">
+ 
+</div>
+
+<div>
+<h2>現在の使用額</h2>
+<%# <% if @consume.present? %>   %>
+<%# <% @consume.each do |item| %> %>
+<%# <% end %> %>
+</div>

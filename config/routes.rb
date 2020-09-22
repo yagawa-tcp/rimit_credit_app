@@ -1,11 +1,12 @@
 Rails.application.routes.draw do
   devise_for :users
-  root to: 'rimit_credit#index'
+  root to: 'consume_money#index'
 
-  resources :credit_rimit do
-    collection do 
-      get 'search'
+   resources :cunsume_moneys do
     end
+  
+  resources :rimit_credits do
+   
   end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end
