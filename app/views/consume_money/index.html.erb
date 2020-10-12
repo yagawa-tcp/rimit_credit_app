@@ -25,13 +25,13 @@
             <%= @nickname %>さんの合計使用額<br>
             ¥ <%= sum %>
           </h4>
-          <span>今月の使用限度額<%= @limit %></span>
+          <span>今月の使用限度額 ¥<%= @limit %></span>
           <br>
           <% if sum.present? && @limit.present? %>
             <% if(sum >= @limit) %>
               <span>限度額を超えました。</span>
-            <% elsif sum * 0.8 > @limit %>
-                <span>限度額に近づいています。</span>
+            <% elsif sum > (@limit * 0.8) %>
+                <span>!限度額に近づいています。!</span>
             <% end %>
           <% else %>
             <span>ユーザー設定で限度額を設定できます。</span>
