@@ -10,6 +10,8 @@ class DeviseCreateUsers < ActiveRecord::Migration[6.0]
       t.string :name,               null: false
       t.references :consumption,     foreign_key: true
       t.references :credit,          foreign_key: true
+      t.integer :rimit
+      t.integer :alert
 
 
       ## Recoverable

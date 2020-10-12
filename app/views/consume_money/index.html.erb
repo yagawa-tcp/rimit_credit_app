@@ -1,22 +1,47 @@
 
-<%= form_with url: cunsume_moneys_path, model: @consume,  local: true, method: :post, class: "consumption-form" do |form| %>
+<%= form_with url: consume_money_index_path, model: @elements,  local: true, method: :post, class: "consumption-form" do |form| %>
  <% if user_signed_in? %> 
-   <h1> 家計簿入力欄 </h1>
-  <%= form.text_field :keyword, placeholder: "商品名を記入", class: "product-name" %><br>
-  <%= form.text_field :keyword, placeholder: "金額を記入（半角数字）", class: "product-money" %><br>
+    <h1> ようこそ<%= @nickname %> さん</h1>
+    <h2> 家計簿入力欄 </h2>
+  <%= form.text_field :product, placeholder: "商品名を記入", class: "product-name" %><br>
+  <%= form.text_field :money, placeholder: "金額を記入（半角数字）", class: "product-money" %><br>
   <%= form.collection_select(:category_id, Category.all, :id, :name, {}, {class:"select-box", id:"product-category"}) %><br>
   <%= form.submit "追加", class: "plus-consume-btn" %>
-  <% else %>
-  <h1> ログインをすることで、家計簿アプリが使えるようになります </h1>
-<% end %>  
-<% end %>
-<div class="contents row">
- 
-</div>
 
-<div>
-<h2>現在の使用額</h2>
-<%# <% if @consume.present? %>   %>
-<%# <% @consume.each do |item| %> %>
-<%# <% end %> %>
+<div class='contents_row'>
+  <h3>現在の使用額</h3>
+    <ul class='elements-lists'>
+      <% sum = 0 %>  
+        <% if @elements.present?   %>
+          <% @elements.each do |element| %>
+            <li class='list'>
+              <span><%= l element.updated_at %></span>
+              <span><%= element.product %></span>
+              <span>¥<%= element.money %></span> 
+            </li>
+              <% sum += element.money %>
+          <% end %>
+          <h4>
+            <%= @nickname %>さんの合計使用額<br>
+            ¥ <%= sum %>
+          </h4>
+          <span>今月の使用限度額<%= @limit %></span>
+          <br>
+          <% if sum.present? && @limit.present? %>
+            <% if(sum >= @limit) %>
+              <span>限度額を超えました。</span>
+            <% elsif sum * 0.8 > @limit %>
+                <span>限度額に近づいています。</span>
+            <% end %>
+          <% else %>
+            <span>ユーザー設定で限度額を設定できます。</span>
+          <% end %>
+        <% else %>
+          <p>記録することで、使用合計額が見れるようになります</p>
+        <% end %>
+    </ul>
 </div>
+  <% else %>
+    <h1> ログインをすることで、家計簿アプリが使えるようになります </h1>
+  <% end %>  
+<% end %>
