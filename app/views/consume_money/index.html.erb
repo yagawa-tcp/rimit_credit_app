@@ -17,7 +17,7 @@
             <li class='list'>
               <span><%= l element.updated_at %></span>
               <span><%= element.product %></span>
-              <span>¥<%= element.money %></span> 
+              <span>¥ <%= element.money.to_s(:delimited) %></span> 
             </li>
               <% sum += element.money %>
           <% end %>
